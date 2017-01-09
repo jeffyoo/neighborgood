@@ -64,11 +64,8 @@ options.controller('optionsController', function(mainFactory, $location){
   }
   vm.getDirectionsApi = function () {
     mainFactory.getDirectionsApi(vm.originLat, vm.originLng, vm.destinationLat, vm.destinationLng)
-    // console.log('this is vm.getDirectionsApi, checking the response after invoking the function', response)
       .then(function(response) {
         mainFactory.insertDirectionsData(response.data.routes[0].legs[0]);
-        // vm.insertDirectionsData(response.data.routes[0].legs[0]);
-        // vm.insertCheckboxesData(vm.priorities);
         console.log('priorities: ', vm.priorities);
         mainFactory.insertPriorities(vm.priorities);
         mainFactory.getScore()
@@ -84,18 +81,6 @@ options.controller('optionsController', function(mainFactory, $location){
       .catch(function(err) {
         console.log('err in getUserData in startupController:', err)
       });
-
-  //
-  // vm.insertDirectionsData = function(data) {
-  //   console.log("JEFF YOOOO:", data)
-  //   mainFactory.insertDirectionsData(data)
-  // }
-  //
-  // vm.insertCheckboxesData = function(data) {
-  //   console.log('inside insertCheckboxesData, this is the data being passed:', data)
-  //   mainFactory.insertCheckboxesData(data);
-  // }
-
 }
 
 });
